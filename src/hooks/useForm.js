@@ -7,7 +7,7 @@ import { useLocalStorage } from './useLocalStorage'
 export const useForm = (initialValues) => {
     
     //slice of state
-    
+     
     const [values, setValues] = useLocalStorage("formValues", initialValues);
 
     const handleChanges = (e) => {
@@ -19,12 +19,9 @@ export const useForm = (initialValues) => {
 
     }
 
-    const clearForm = e => {
-        e.preventDefault();
-        setValues(initialValues);
-    }
+  
 
    
 
-    return[values, handleChanges, clearForm]
+    return[values, handleChanges]
 }
