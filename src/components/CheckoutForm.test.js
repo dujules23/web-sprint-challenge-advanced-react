@@ -19,7 +19,7 @@ test("form header renders", () => {
 
 });
 
-test("form shows success message on submit with form details", () => {
+test("form shows success message on submit with form details", async () => {
     // Arrange:
     render(<CheckoutForm />);
 
@@ -43,6 +43,25 @@ test("form shows success message on submit with form details", () => {
     userEvent.click(submitButton);
 
 
-    // Assert:
+    // Assert: (this may need await which would need findBy instead, currently getting MutationObserver error, will fix next session)
+    const newFirstName = screen.getByText(/Jacob/i);
+    const newLastName = screen.getByText(/Smith/i);
+    const newAddress =  screen.getByText(/333 See You There Lane/i);
+    const newCity =  screen.getByText(/Wakanda/i);
+    const newState =  screen.getByText(/WA/i);
+    const newZip =  screen.getByText(/40392/i);
+
+    const success = screen.getByText(/You have ordered some plants!/i) 
+    
+
+    expect(newFirstName).toBeTruthy();
+    expect(newLastName).toBeTruthy();
+    expect(newAddress).toBeTruthy();
+    expect(newCity).toBeTruthy();
+    expect(newState).toBeTruthy();
+    expect(newZip).toBeTruthy();
+
+    expect(success).toBeTruthy();
+
 
 });
